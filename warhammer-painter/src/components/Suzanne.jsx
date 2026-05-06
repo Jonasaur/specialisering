@@ -1,19 +1,10 @@
 import { useState } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export default function Suzanne() {
+export default function Suzanne({ brushColor }) {
   const { nodes } = useGLTF("/suzanne.glb");
-
   const [hovered, setHovered] = useState(null);
-
-  const [partColors, setPartColors] = useState({
-    Suzanne_1: "orange",
-    Suzanne_2: "orange",
-    Suzanne_3: "orange",
-    Suzanne_4: "orange",
-    Suzanne_5: "orange",
-    Suzanne_6: "orange",
-  });
+  const [partColors, setPartColors] = useState({});
 
   return (
     <group dispose={null}>
@@ -23,22 +14,22 @@ export default function Suzanne() {
         const isHovered = hovered === name;
 
         return (
-          <mesh key={name} geometry={nodes[name].geometry}
-            onPointerOver=
-            {(e) => {
+          <mesh
+            key={name}
+            geometry={nodes[name].geometry}
+            onPointerOver={(e) => {
               e.stopPropagation();
               setHovered(name);
             }}
-            onPointerOut= {() => setHovered(null)}
+            onPointerOut={() => setHovered(null)}
             onClick={(e) => {
-                e.stopPropagation();
-                setPartColors((prev) => ({
-                    ...prev,
-                    [name]: "royalblue",
-                }));
+              e.stopPropagation();
+              setPartColors((prev) => ({
+                ...prev,
+                [name]: brushColor, 
+              }));
             }}
-              
-            >
+          >
             <meshStandardMaterial
               color={partColors[name] || "orange"}
               emissive={isHovered ? "white" : "black"}
