@@ -1,20 +1,37 @@
-import { useGLTF } from '@react-three/drei'
+import { useState } from "react";
+import { useGLTF } from "@react-three/drei";
 
 export default function Suzanne() {
-    const { nodes } = useGLTF('/suzanne.glb')
+  const { nodes } = useGLTF("/suzanne.glb");
 
-    return (
-        <group dispose={null}>
-            {Object.keys(nodes).map((key) => {
-                if (nodes[key].type === 'Mesh') {
-                    return (
-                        <mesh key={key} geometry={nodes[key].geometry}>
-                            <meshStandardMaterial color="orange" />
-                        </mesh>
-                    )
-                }
-                return null
-            })}
-        </group>
-    )
+  const [hovered, setHovered] = useState(null);
+
+  return (
+    <group dispose={null}>
+      {Object.keys(nodes).map((name) => {
+        if (nodes[name].type !== "Mesh") return null;
+
+        const isHovered = hovered === name;
+
+        return (
+          <mesh key={name} geometry={nodes[name].geometry}
+            onPointerOver=
+            {(e) => {
+              e.stopProagation();
+              setHovered(name);
+            }}
+            onPointerOut=
+            {(e) => {
+              setHovered(null);
+            }}>
+            <meshStandardMaterial
+              color="orange"
+              emissive={isHovered ? "white" : "black"}
+              emissiveIntensity={isHovered ? 0.5 : 0}
+            />
+          </mesh>
+        );
+      })}
+    </group>
+  );
 }
