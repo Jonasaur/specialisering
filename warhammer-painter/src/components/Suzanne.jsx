@@ -6,6 +6,15 @@ export default function Suzanne() {
 
   const [hovered, setHovered] = useState(null);
 
+  const [partColors, setPartColors] = useState({
+    Suzanne_1: "orange",
+    Suzanne_2: "orange",
+    Suzanne_3: "orange",
+    Suzanne_4: "orange",
+    Suzanne_5: "orange",
+    Suzanne_6: "orange",
+  });
+
   return (
     <group dispose={null}>
       {Object.keys(nodes).map((name) => {
@@ -17,17 +26,23 @@ export default function Suzanne() {
           <mesh key={name} geometry={nodes[name].geometry}
             onPointerOver=
             {(e) => {
-              e.stopProagation();
+              e.stopPropagation();
               setHovered(name);
             }}
-            onPointerOut=
-            {(e) => {
-              setHovered(null);
-            }}>
+            onPointerOut= {() => setHovered(null)}
+            onClick={(e) => {
+                e.stopPropagation();
+                setPartColors((prev) => ({
+                    ...prev,
+                    [name]: "royalblue",
+                }));
+            }}
+              
+            >
             <meshStandardMaterial
-              color="orange"
+              color={partColors[name] || "orange"}
               emissive={isHovered ? "white" : "black"}
-              emissiveIntensity={isHovered ? 0.5 : 0}
+              emissiveIntensity={isHovered ? 0.1 : 0}
             />
           </mesh>
         );
