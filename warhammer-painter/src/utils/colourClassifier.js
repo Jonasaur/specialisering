@@ -93,7 +93,7 @@ const PALETTE_ROW_BLUEPRINT = [
   {
     label: "Metallics",
     segments: [
-      { type: "Base", ids: [132, 19, 94, 84, 125, 19] },
+      { type: "Base", ids: [132, 19, 94, 84, 125] },
       { type: "Layer", ids: [128, 140, 27, 155, 77, 71, 151, 127] }
     ]
   }

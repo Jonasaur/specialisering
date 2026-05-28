@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export default function Suzanne({ brushColor }) {
-  const { nodes } = useGLTF("/suzanne.glb");
+export default function SpaceMarine({ brushColor, primeTrigger }) {
+  const { nodes } = useGLTF("/spacemarine.glb");
   const [hovered, setHovered] = useState(null);
   const [partColors, setPartColors] = useState({});
+
+  useEffect(() => {
+    if (primeTrigger === 0 || !brushColor) return;
+
+    const primedState = {};
+    Object.keys(nodes).forEach((name) => {
+      if (nodes[name].type === "Mesh") {
+        primedState[name] = brushColor;
+      }
+    });
+
+    setPartColors(primedState);
+  }, [primeTrigger]);
 
   return (
     <group dispose={null}>
@@ -12,6 +25,8 @@ export default function Suzanne({ brushColor }) {
         if (nodes[name].type !== "Mesh") return null;
 
         const isHovered = hovered === name;
+        const appliedPaint = partColors[name];
+        const isPaintMetallic = appliedPaint && appliedPaint.isMetallic;
 
         return (
           <mesh
@@ -26,12 +41,14 @@ export default function Suzanne({ brushColor }) {
               e.stopPropagation();
               setPartColors((prev) => ({
                 ...prev,
-                [name]: brushColor, 
+                [name]: brushColor,
               }));
             }}
           >
             <meshStandardMaterial
-              color={partColors[name] || "gray"}
+              color={appliedPaint ? appliedPaint.hex : "gray"}
+              metalness={isPaintMetallic ? 0.5 : 0.0}
+              roughness={isPaintMetallic ? 0.2 : 0.7}
               emissive={isHovered ? "white" : "black"}
               emissiveIntensity={isHovered ? 0.1 : 0}
             />
