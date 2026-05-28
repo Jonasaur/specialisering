@@ -1,0 +1,74 @@
+{
+  "hash": "398fbca2",
+  "configHash": "5551edc6",
+  "lockfileHash": "0232fca5",
+  "browserHash": "1a349d0e",
+  "optimized": {
+    "@react-three/drei": {
+      "src": "../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "66189c84",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "68ab30b7",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "a000588a",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "e8ef01c1",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "9f010a8b",
+      "needsInterop": true
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "79d23c4d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-CYJPkc-J": {
+      "file": "chunk-CYJPkc-J.js",
+      "isDynamicEntry": false
+    },
+    "client-CX_j1d62": {
+      "file": "client-CX_j1d62.js",
+      "isDynamicEntry": false
+    },
+    "hls-hgEnkJj2": {
+      "file": "hls-hgEnkJj2.js",
+      "isDynamicEntry": false
+    },
+    "react-three-fiber.esm-CS7rJ2vr": {
+      "file": "react-three-fiber.esm-CS7rJ2vr.js",
+      "isDynamicEntry": false
+    },
+    "scheduler-CtQc8lLn": {
+      "file": "scheduler-CtQc8lLn.js",
+      "isDynamicEntry": false
+    },
+    "three.module-DxTnMYRF": {
+      "file": "three.module-DxTnMYRF.js",
+      "isDynamicEntry": false
+    },
+    "vision_bundle-Dn83QYTE": {
+      "file": "vision_bundle-Dn83QYTE.js",
+      "isDynamicEntry": true
+    }
+  }
+}
